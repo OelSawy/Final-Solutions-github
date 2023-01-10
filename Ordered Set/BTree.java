@@ -1,5 +1,3 @@
-import java.util.Stack;
-
 class Node {
 
 	public Comparable data;
@@ -177,80 +175,16 @@ class BTree {
 		}
 	}
 
-	public boolean heapOrdered() {
-		return heapOrdered(this.root);
-	}
-
-	public boolean heapOrdered(Node n) {
-		return ((int) n.data) == maxBranch(n);
-	}
-
-	public int maxBranch(Node n) {
-		if (n == null) {
-			return 0;
-		} else {
-			return Math.max((int) n.data, Math.max(maxBranch(n.left), maxBranch(n.right)));
-		}
-	}
-
-	public LinkList path(int key) {
-		LinkList l = new LinkList();
-		return path(l, this.root, key);
-	}
-
-	public LinkList path(LinkList l, Node n, int key) {
-		if (n == null) {
-			return null;
-		}
-		if ((int) n.data == key) {
-			l.insertLast(key);
-		} else {
-			l.insertLast(n.data);
-			if (key > (int) n.data) {
-				return path(l, n.right, key);
-			} else {
-				return path(l, n.left, key);
-			}
-		}
-		return l;
-	}
-
-	public static void levelOrder(Node root) {
-		Stack<Object> s = new Stack<Object>();
-		s.push(root);
-		while (!s.isEmpty()) {
-			Node node = (Node) s.pop();
-			System.out.print(" " + node.data);
-			if (node.left != null)
-				s.push(node.left);
-			if (node.right != null)
-				s.push(node.right);
-		}
-	}
-
-	public int getWidth() {
-		return getWidth(this.root);
-	}
-
-	public int getWidth(Node n) {
-		if (n == null) {
-			return 0;
-		}
-
-	}
-
 	public static void main(String[] args) {
 		BTree b = new BTree();
-		b.add(9);
-		b.add(5);
-		b.add(14);
-		b.add(4);
-		b.add(8);
-		b.add(16);
+		b.add(20);
 		b.add(15);
-		b.add(30);
+		b.add(25);
+		b.add(12);
+		b.add(18);
+		b.add(22);
+		b.add(29);
 		b.displayTree();
-		levelOrder(b.root);
 	}
 
 }
